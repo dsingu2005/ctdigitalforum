@@ -1,0 +1,32 @@
+/* src/index.css */
+
+/* Reset default box model and remove default padding/margin */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Enable smooth scrolling for in-page links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base body styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;           /* Fallback solid black if canvas fails */
+  color: #ffffff;             /* Default text color */
+  overflow-x: hidden;         /* Prevent horizontal scroll */
+}
+
+/* Link styling */
+a {
+  color: #f200ff;             /* Neon magenta accent */
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}

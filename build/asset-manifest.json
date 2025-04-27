@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.69a9bca4.css",
+    "main.js": "/static/js/main.0c026518.js",
+    "static/js/453.6d77ab43.chunk.js": "/static/js/453.6d77ab43.chunk.js",
+    "static/media/luma-preview.png": "/static/media/luma-preview.f0c456656a43da19ecda.png",
+    "static/media/carbon-fiber.png": "/static/media/carbon-fiber.85db59da06d6d3e8ae68.png",
+    "index.html": "/index.html",
+    "main.69a9bca4.css.map": "/static/css/main.69a9bca4.css.map",
+    "main.0c026518.js.map": "/static/js/main.0c026518.js.map",
+    "453.6d77ab43.chunk.js.map": "/static/js/453.6d77ab43.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69a9bca4.css",
+    "static/js/main.0c026518.js"
+  ]
+}

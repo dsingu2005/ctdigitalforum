@@ -1,0 +1,17 @@
+[[redirects]]
+  from = "http://www.ctdigitalforum.com/*"
+  to = "https://ctdigitalforum.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://ctdigitalforum.com/*"
+  to = "https://ctdigitalforum.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.ctdigitalforum.com/*"
+  to = "https://ctdigitalforum.com/:splat"
+  status = 301
+  force = true

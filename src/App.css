@@ -1,23 +1,32 @@
-/* src/App.css */
-
 /*────────────────────────────────────────────────
-  1) APP & BACKGROUND
+  1) ROOT & BACKGROUND
 ────────────────────────────────────────────────*/
+html,
+body,
+#root,
 .App {
-  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   min-height: 100vh;
+}
+
+/* CRA will replace %PUBLIC_URL% with "/" at build time */
+.App {
   background: url('../public/carbon-fiber.png') center/cover fixed;
+  background-size: cover;
   font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 /*────────────────────────────────────────────────
-  2) SMOOTH SCROLL RESET
+  2) SMOOTH SCROLL
 ────────────────────────────────────────────────*/
 html {
   scroll-behavior: smooth;
 }
+
 
 /*────────────────────────────────────────────────
   3) NAVBAR & POP-ON-LOAD ANIMATION
@@ -28,18 +37,56 @@ html {
   100% { transform: scale(1)   translateY(0);      opacity: 1; }
 }
 
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: #f200ff;
+  cursor: pointer;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 60px;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(6px);
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
+.navbar-container {
+  height: 100%;             
+  display: flex;
+  align-items: center;       
+  justify-content: space-between;
+}
+
 .navbar.pop {
   animation: navPop 0.8s ease-out forwards;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar ul {
@@ -75,6 +122,33 @@ html {
   border-radius: 2px;
 }
 
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 64px; /* height of navbar */
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.9);
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  /* when open, expand */
+  .nav-links.open {
+    max-height: 400px;
+  }
+
+  .nav-links li {
+    margin: 16px 0;
+  }
+
+}
 /*────────────────────────────────────────────────
   4) HEADER INTRO POP
 ────────────────────────────────────────────────*/
@@ -228,11 +302,6 @@ html {
 /*────────────────────────────────────────────────
   10) FOOTER
 ────────────────────────────────────────────────*/
-footer.section {
-  text-align: center;
-  margin-bottom: 40px;
-  color: #ffffff;
-}
 .about-us .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -314,4 +383,57 @@ footer.section {
 
 .linkedin-btn:hover {
   background: #084d9c;
+}
+
+/* ----- FOOTER ----- */
+.site-footer {
+  width: 100%;
+  background: #111;
+  color: #ddd;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.site-footer .footer-nav {
+  margin-bottom: 16px;
+}
+
+.site-footer .footer-link {
+  color: #f200ff;
+  text-decoration: none;
+  margin: 0 16px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.site-footer .footer-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.site-footer p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ────────────────────────────────────────────────────────────
+   5) RESPONSIVE TWEAKS (if needed)
+──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 24px 12px;
+  }
+  .site-footer .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .site-footer .footer-link {
+    margin: 0;
+  }
+  .nav-links {
+    top: 60px;               
+  }
 }

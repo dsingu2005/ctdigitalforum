@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import NavBar from './components/NavBar';
@@ -7,40 +8,74 @@ import LinkedinSection from './components/LinkedinSection';
 import PastEvents from './components/PastEvents';
 import UpcomingEvents from './components/UpcomingEvents';
 import Testimonials from './components/Testimonials';
+import Footer from './components/Footer';
+
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfUse   from './components/TermsOfUse';
 
 function App() {
   useEffect(() => {
-    // scroll‐reveal for all .section
-    const obs = new IntersectionObserver(
+    // scroll-reveal logic for all .section
+    const observer = new IntersectionObserver(
       entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) e.target.classList.add('visible');
-        });
+        entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
       },
       { threshold: 0.1 }
     );
-    document.querySelectorAll('.section').forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+    document.querySelectorAll('.section').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="App">
-      <NavBar />
+      <Router>
+        <NavBar />
 
-      <header className="section header-intro" id="home">
-        <h1>CT Digital Forum</h1>
-        <p>Where Connecticut’s leaders in finance, tech & culture converge.</p>
-      </header>
+        <Routes>
+          {/* Home */}
+          <Route
+            path="/"
+            element={
+              <>
+                <header className="section header-intro" id="home">
+                  <h1>CT Digital Forum</h1>
+                  <p>Where Connecticut’s leaders in finance, tech & culture converge.</p>
+                </header>
 
-      <AboutUs />
-      <LinkedinSection />
-      <PastEvents />
-      <UpcomingEvents />
-      <Testimonials />
+                <AboutUs />
+                <LinkedinSection />
+                <PastEvents />
+                <UpcomingEvents />
+                <Testimonials />
 
-      <footer className="section">
-        © {new Date().getFullYear()} CT Digital Forum. All rights reserved.
-      </footer>
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Privacy Policy page */}
+          <Route
+            path="/privacy"
+            element={
+              <>
+                <PrivacyPolicy />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Terms of Use page */}
+          <Route
+            path="/terms"
+            element={
+              <>
+                <TermsOfUse />
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

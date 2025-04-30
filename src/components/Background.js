@@ -31,3 +31,4 @@ export default function Background() {
 
   return <canvas id="background-canvas" ref={canvasRef} />;
 }
+

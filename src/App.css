@@ -350,21 +350,28 @@ html {
 }
 
 .logos-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.logo-item {
+  width: 120px;     
+  display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 
 .logo-item img {
   max-width: 100%;
-  max-height: 60px;
+  height: auto;
   object-fit: contain;
-  /* filter: brightness(0) invert(1); */
-  transition: transform 0.3s;
+  filter: brightness(0) invert(1);
 }
-
 
 /* — LinkedIn section styling — */
 .linkedin-section {

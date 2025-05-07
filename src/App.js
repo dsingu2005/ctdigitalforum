@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 
 import NavBar from './components/NavBar';
@@ -14,71 +14,69 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse   from './components/TermsOfUse';
 
 function App() {
+  const location = useLocation();
+
   useEffect(() => {
-    // scroll-reveal logic for all .section
+    // Re-attach observer on every route change
     const observer = new IntersectionObserver(
       entries => {
-        entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('visible');
+        });
       },
       { threshold: 0.1 }
     );
     document.querySelectorAll('.section').forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [location]);
 
   return (
     <div className="App">
-      <Router>
-        <NavBar />
+      <NavBar />
 
-        <Routes>
-          {/* Home */}
-          <Route
-            path="/"
-            element={
-              <>
-                <header className="section header-intro" id="home">
-                  <h1>CT Digital Forum</h1>
-                  <p>Where Connecticut’s leaders in finance, tech & culture converge.</p>
-                </header>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <header className="section header-intro" id="home">
+                <h1>CT Digital Forum</h1>
+                <p>Where Connecticut’s leaders in finance, tech & culture converge.</p>
+              </header>
 
-                <AboutUs />
-                <LinkedinSection />
-                <PastEvents />
-                <UpcomingEvents />
-                <Testimonials />
+              <AboutUs />
+              <LinkedinSection />
+              <PastEvents />
+              <UpcomingEvents />
+              <Testimonials />
 
-                <Footer />
-              </>
-            }
-          />
+              <Footer />
+            </>
+          }
+        />
 
-          {/* Privacy Policy page */}
-          <Route
-            path="/privacy"
-            element={
-              <>
-                <PrivacyPolicy />
-                <Footer />
-              </>
-            }
-          />
+        <Route
+          path="/privacy"
+          element={
+            <>
+              <PrivacyPolicy />
+              <Footer />
+            </>
+          }
+        />
 
-          {/* Terms of Use page */}
-          <Route
-            path="/terms"
-            element={
-              <>
-                <TermsOfUse />
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
-      </Router>
+        <Route
+          path="/terms"
+          element={
+            <>
+              <TermsOfUse />
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
     </div>
   );
 }
 
 export default App;
-  
